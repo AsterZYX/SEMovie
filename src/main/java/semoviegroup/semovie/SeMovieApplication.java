@@ -9,5 +9,5 @@ public class SeMovieApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SeMovieApplication.class, args);
 	}
-
+//stt的注释
 }
