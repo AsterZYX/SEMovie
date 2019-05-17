@@ -1,5 +1,8 @@
 package semoviegroup.semovie.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import lombok.Data;
 
 @Data
@@ -26,6 +29,199 @@ public class Movie {
 	String sale;//票房
 	String doubanrating;//豆瓣评分
 	
+	ArrayList<String> picList;//电影图集
+	ArrayList<Worker> workerPicList;//电影人员图像
+	HashMap<Cinema,Double> cinemaList;//影院信息,价格
+	public String getMovieid() {
+		return movieid;
+	}
+	public void setMovieid(String movieid) {
+		this.movieid = movieid;
+	}
+	public String getRating() {
+		return rating;
+	}
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+	public String getGenres() {
+		return genres;
+	}
+	public void setGenres(String genres) {
+		this.genres = genres;
+	}
+	public String getRuntime() {
+		return runtime;
+	}
+	public void setRuntime(String runtime) {
+		this.runtime = runtime;
+	}
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+	public String getWriters() {
+		return writers;
+	}
+	public void setWriters(String writers) {
+		this.writers = writers;
+	}
+	public String getFilm_locations() {
+		return film_locations;
+	}
+	public void setFilm_locations(String film_locations) {
+		this.film_locations = film_locations;
+	}
+	public String getDirectors() {
+		return directors;
+	}
+	public void setDirectors(String directors) {
+		this.directors = directors;
+	}
+	public String getRating_count() {
+		return rating_count;
+	}
+	public void setRating_count(String rating_count) {
+		this.rating_count = rating_count;
+	}
+	public String getActors() {
+		return actors;
+	}
+	public void setActors(String actors) {
+		this.actors = actors;
+	}
+	public String getPlot_simple() {
+		return plot_simple;
+	}
+	public void setPlot_simple(String plot_simple) {
+		this.plot_simple = plot_simple;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getRelease_date() {
+		return release_date;
+	}
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
+	}
+	public String getAlso_known_as() {
+		return also_known_as;
+	}
+	public void setAlso_known_as(String also_known_as) {
+		this.also_known_as = also_known_as;
+	}
+	public String getWanting() {
+		return wanting;
+	}
+	public void setWanting(String wanting) {
+		this.wanting = wanting;
+	}
+	public String getSale() {
+		return sale;
+	}
+	public void setSale(String sale) {
+		this.sale = sale;
+	}
+	public String getDoubanrating() {
+		return doubanrating;
+	}
+	public void setDoubanrating(String doubanrating) {
+		this.doubanrating = doubanrating;
+	}
+	public ArrayList<String> getPicList() {
+		return picList;
+	}
+	public void setPicList(ArrayList<String> picList) {
+		this.picList = picList;
+	}
+	public ArrayList<Worker> getWorkerPicList() {
+		return workerPicList;
+	}
+	public void setWorkerPicList(ArrayList<Worker> workerPicList) {
+		this.workerPicList = workerPicList;
+	}
+	public HashMap<Cinema, Double> getCinemaList() {
+		return cinemaList;
+	}
+	public void setCinemaList(HashMap<Cinema, Double> cinemaList) {
+		this.cinemaList = cinemaList;
+	}
+	@Override
+	public String toString() {
+		return "{\"movieid\":\"" + movieid + "\",\"rating\":\"" + rating + "\",\"genres\":\"" + genres
+				+ "\",\"runtime\":\"" + runtime + "\",\"language\":\"" + language + "\",\"title\":\"" + title
+				+ "\",\"poster\":\"" + poster + "\",\"writers\":\"" + writers + "\",\"film_locations\":\""
+				+ film_locations + "\",\"directors\":\"" + directors + "\",\"rating_count\":\"" + rating_count
+				+ "\",\"actors\":\"" + actors + "\",\"plot_simple\":\"" + plot_simple + "\",\"year\":\"" + year
+				+ "\",\"country\":\"" + country + "\",\"type\":\"" + type + "\",\"release_date\":\"" + release_date
+				+ "\",\"also_known_as\":\"" + also_known_as + "\",\"wanting\":\"" + wanting + "\",\"sale\":\"" + sale
+				+ "\",\"doubanrating\":\"" + doubanrating + "\",\"picList\":" + picList + ",\"workerPicList\":"
+				+ workerPicList + ",\"cinemaList\":" + cinemaList + "}";
+	}
+	public Movie(String movieid, String rating, String genres, String runtime, String language, String title,
+			String poster, String writers, String film_locations, String directors, String rating_count, String actors,
+			String plot_simple, String year, String country, String type, String release_date, String also_known_as,
+			String wanting, String sale, String doubanrating, ArrayList<String> picList,
+			ArrayList<Worker> workerPicList, HashMap<Cinema, Double> cinemaList) {
+		super();
+		this.movieid = movieid;
+		this.rating = rating;
+		this.genres = genres;
+		this.runtime = runtime;
+		this.language = language;
+		this.title = title;
+		this.poster = poster;
+		this.writers = writers;
+		this.film_locations = film_locations;
+		this.directors = directors;
+		this.rating_count = rating_count;
+		this.actors = actors;
+		this.plot_simple = plot_simple;
+		this.year = year;
+		this.country = country;
+		this.type = type;
+		this.release_date = release_date;
+		this.also_known_as = also_known_as;
+		this.wanting = wanting;
+		this.sale = sale;
+		this.doubanrating = doubanrating;
+		this.picList = picList;
+		this.workerPicList = workerPicList;
+		this.cinemaList = cinemaList;
+	}
+	
+	
+	
 	 /*
 	      {
             "movieid": "30803",
@@ -48,46 +244,9 @@ public class Movie {
             "also_known_as": ""
           }
 	 */
-	
-	
-	
-	
-	public Movie(String movieid, String rating, String genres, String runtime, String language, String title,
-			String poster, String writers, String film_locations, String directors, String rating_count, String actors,
-			String plot_simple, String year, String country, String type, String release_date, String also_known_as,String wanting,String sale,String doubanrating) {
-		super();
-		this.movieid = movieid;
-		this.rating = rating;
-		this.genres = genres;
-		this.runtime = runtime;
-		this.language = language;
-		this.title = title;
-		this.poster = poster;
-		this.writers = writers;
-		this.film_locations = film_locations;
-		this.directors = directors;
-		this.rating_count = rating_count;
-		this.actors = actors;
-		this.plot_simple = plot_simple;
-		this.year = year;
-		this.country = country;
-		this.type = type;
-		this.release_date = release_date;
-		this.also_known_as = also_known_as;
-		this.wanting=wanting;
-		this.sale=sale;
-		this.doubanrating=doubanrating;
-	}
 
-	@Override
-	public String toString() {
-		return "{\"movieid\":\"" + movieid + "\",\"rating\":\"" + rating + "\",\"genres\":\"" + genres
-				+ "\",\"runtime\":\"" + runtime + "\",\"language\":\"" + language + "\",\"title\":\"" + title
-				+ "\",\"poster\":\"" + poster + "\",\"writers\":\"" + writers + "\",\"film_locations\":\""
-				+ film_locations + "\",\"directors\":\"" + directors + "\",\"rating_count\":\"" + rating_count
-				+ "\",\"actors\":\"" + actors + "\",\"plot_simple\":\"" + plot_simple + "\",\"year\":\"" + year
-				+ "\",\"country\":\"" + country + "\",\"type\":\"" + type + "\",\"release_date\":\"" + release_date
-				+ "\",\"also_known_as\":\"" + also_known_as + "\",\"wanting\":\"" + wanting + "\",\"sale\":\"" + sale + "\",\"doubanrating\":\"" + doubanrating + "\"}";
-	}
-
+	
+	
+	
+	
 }
