@@ -24,7 +24,7 @@ public class Movie {
 	String also_known_as;// 其它名称
 	String wanting;//想看人数
 	String sale;//票房
-	String doubanrating；//豆瓣评分
+	String doubanrating;//豆瓣评分
 	
 	 /*
 	      {
@@ -54,7 +54,7 @@ public class Movie {
 	
 	public Movie(String movieid, String rating, String genres, String runtime, String language, String title,
 			String poster, String writers, String film_locations, String directors, String rating_count, String actors,
-			String plot_simple, String year, String country, String type, String release_date, String also_known_as,String wanting，String sale，String doubanrating) {
+			String plot_simple, String year, String country, String type, String release_date, String also_known_as,String wanting,String sale,String doubanrating) {
 		super();
 		this.movieid = movieid;
 		this.rating = rating;
