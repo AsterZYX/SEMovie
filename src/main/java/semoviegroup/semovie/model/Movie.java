@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Movie {
 	String movieid;// 唯一标识ID
-	String state;//正在上映 即将上映 经典影片
+	String state;// 正在上映 即将上映 经典影片
 	String maoyanrating;// 猫眼评分
 	String doubanrating;// 豆瓣评分
 	String wanting;// 想看人数
@@ -45,8 +45,6 @@ public class Movie {
 	public void setMovieid(String movieid) {
 		this.movieid = movieid;
 	}
-
-	
 
 	public String getState() {
 		return state;
@@ -248,6 +246,9 @@ public class Movie {
 		this.taoppcinemaList = taoppcinemaList;
 	}
 
+	public Movie() {
+	}
+
 	public Movie(String movieid, String state, String maoyanrating, String doubanrating, String wanting, String sale,
 			String runtime, String language, String title, String poster, String writers, String film_locations,
 			String rating_count, String plot_simple, String year, String country, String type, String release_date,
@@ -291,12 +292,10 @@ public class Movie {
 				+ "\",\"poster\":\"" + poster + "\",\"writers\":\"" + writers + "\",\"film_locations\":\""
 				+ film_locations + "\",\"rating_count\":\"" + rating_count + "\",\"plot_simple\":\"" + plot_simple
 				+ "\",\"year\":\"" + year + "\",\"country\":\"" + country + "\",\"type\":\"" + type
-				+ "\",\"release_date\":\"" + release_date + "\",\"also_known_as\":\"" + also_known_as
-				+ "\",\"genres\":" + genres + ",\"directorList\":" + directorList + ",\"actorList\":"
-				+ actorList + ",\"picList\":" + picList + ",\"maoyancinemaList\":" + maoyancinemaList
-				+ ",\"doubancinemaList\":" + doubancinemaList + ",\"taoppcinemaList\":" + taoppcinemaList
-				+ "}";
+				+ "\",\"release_date\":\"" + release_date + "\",\"also_known_as\":\"" + also_known_as + "\",\"genres\":"
+				+ genres + ",\"directorList\":" + directorList + ",\"actorList\":" + actorList + ",\"picList\":"
+				+ picList + ",\"maoyancinemaList\":" + maoyancinemaList + ",\"doubancinemaList\":" + doubancinemaList
+				+ ",\"taoppcinemaList\":" + taoppcinemaList + "}";
 	}
 
-	
 }
