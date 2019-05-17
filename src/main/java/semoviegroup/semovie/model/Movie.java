@@ -22,6 +22,8 @@ public class Movie {
 	String type;// 影片类型  （大多是null 不是很懂这个字段的意义是什么）
 	String release_date;//上映时间
 	String also_known_as;// 其它名称
+	String wanting;//想看人数
+	String sale;//票房
 
 	
 	 /*
@@ -52,7 +54,7 @@ public class Movie {
 	
 	public Movie(String movieid, String rating, String genres, String runtime, String language, String title,
 			String poster, String writers, String film_locations, String directors, String rating_count, String actors,
-			String plot_simple, String year, String country, String type, String release_date, String also_known_as) {
+			String plot_simple, String year, String country, String type, String release_date, String also_known_as,String wanting，String sale) {
 		super();
 		this.movieid = movieid;
 		this.rating = rating;
@@ -72,6 +74,8 @@ public class Movie {
 		this.type = type;
 		this.release_date = release_date;
 		this.also_known_as = also_known_as;
+		this.wanting=wanting;
+		this.sale=sale;
 	}
 
 	@Override
@@ -82,7 +86,7 @@ public class Movie {
 				+ film_locations + "\",\"directors\":\"" + directors + "\",\"rating_count\":\"" + rating_count
 				+ "\",\"actors\":\"" + actors + "\",\"plot_simple\":\"" + plot_simple + "\",\"year\":\"" + year
 				+ "\",\"country\":\"" + country + "\",\"type\":\"" + type + "\",\"release_date\":\"" + release_date
-				+ "\",\"also_known_as\":\"" + also_known_as + "\"}";
+				+ "\",\"also_known_as\":\"" + also_known_as + "\",\"wanting\":\"" + wanting+ "\",\"sale\":\"" + sale + "\"}";
 	}
 
 }
