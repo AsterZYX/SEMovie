@@ -10,7 +10,8 @@ import lombok.Data;
 @Data
 public class Movie {
 	String movieid;// 唯一标识ID
-	String rating;// 猫眼评分
+	String state;//正在上映 即将上映 经典影片
+	String maoyanrating;// 猫眼评分
 	String doubanrating;// 豆瓣评分
 	String wanting;// 想看人数
 	String sale;// 票房
@@ -45,12 +46,22 @@ public class Movie {
 		this.movieid = movieid;
 	}
 
-	public String getRating() {
-		return rating;
+	
+
+	public String getState() {
+		return state;
 	}
 
-	public void setRating(String rating) {
-		this.rating = rating;
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getMaoyanrating() {
+		return maoyanrating;
+	}
+
+	public void setMaoyanrating(String maoyanrating) {
+		this.maoyanrating = maoyanrating;
 	}
 
 	public String getDoubanrating() {
@@ -237,15 +248,16 @@ public class Movie {
 		this.taoppcinemaList = taoppcinemaList;
 	}
 
-	public Movie(String movieid, String rating, String doubanrating, String wanting, String sale, String runtime,
-			String language, String title, String poster, String writers, String film_locations, String rating_count,
-			String plot_simple, String year, String country, String type, String release_date, String also_known_as,
-			ArrayList<String> genres, ArrayList<Worker> directorList, ArrayList<Worker> actorList,
+	public Movie(String movieid, String state, String maoyanrating, String doubanrating, String wanting, String sale,
+			String runtime, String language, String title, String poster, String writers, String film_locations,
+			String rating_count, String plot_simple, String year, String country, String type, String release_date,
+			String also_known_as, ArrayList<String> genres, ArrayList<Worker> directorList, ArrayList<Worker> actorList,
 			ArrayList<String> picList, SortedMap<Cinema, Double> maoyancinemaList,
 			SortedMap<Cinema, Double> doubancinemaList, SortedMap<Cinema, Double> taoppcinemaList) {
 		super();
 		this.movieid = movieid;
-		this.rating = rating;
+		this.state = state;
+		this.maoyanrating = maoyanrating;
 		this.doubanrating = doubanrating;
 		this.wanting = wanting;
 		this.sale = sale;
@@ -273,16 +285,18 @@ public class Movie {
 
 	@Override
 	public String toString() {
-		return "{\"movieid\":\"" + movieid + "\",\"rating\":\"" + rating + "\",\"doubanrating\":\"" + doubanrating
-				+ "\",\"wanting\":\"" + wanting + "\",\"sale\":\"" + sale + "\",\"runtime\":\"" + runtime
-				+ "\",\"language\":\"" + language + "\",\"title\":\"" + title + "\",\"poster\":\"" + poster
-				+ "\",\"writers\":\"" + writers + "\",\"film_locations\":\"" + film_locations + "\",\"rating_count\":\""
-				+ rating_count + "\",\"plot_simple\":\"" + plot_simple + "\",\"year\":\"" + year + "\",\"country\":\""
-				+ country + "\",\"type\":\"" + type + "\",\"release_date\":\"" + release_date
-				+ "\",\"also_known_as\":\"" + also_known_as + "\",\"genres\":" + genres + ",\"directorList\":"
-				+ directorList + ",\"actorList\":" + actorList + ",\"picList\":" + picList + ",\"maoyancinemaList\":"
-				+ maoyancinemaList + ",\"doubancinemaList\":" + doubancinemaList + ",\"taoppcinemaList\":"
-				+ taoppcinemaList + "}";
+		return "{\"movieid\":\"" + movieid + "\",\"state\":\"" + state + "\",\"maoyanrating\":\"" + maoyanrating
+				+ "\",\"doubanrating\":\"" + doubanrating + "\",\"wanting\":\"" + wanting + "\",\"sale\":\"" + sale
+				+ "\",\"runtime\":\"" + runtime + "\",\"language\":\"" + language + "\",\"title\":\"" + title
+				+ "\",\"poster\":\"" + poster + "\",\"writers\":\"" + writers + "\",\"film_locations\":\""
+				+ film_locations + "\",\"rating_count\":\"" + rating_count + "\",\"plot_simple\":\"" + plot_simple
+				+ "\",\"year\":\"" + year + "\",\"country\":\"" + country + "\",\"type\":\"" + type
+				+ "\",\"release_date\":\"" + release_date + "\",\"also_known_as\":\"" + also_known_as
+				+ "\",\"genres\":" + genres + ",\"directorList\":" + directorList + ",\"actorList\":"
+				+ actorList + ",\"picList\":" + picList + ",\"maoyancinemaList\":" + maoyancinemaList
+				+ ",\"doubancinemaList\":" + doubancinemaList + ",\"taoppcinemaList\":" + taoppcinemaList
+				+ "}";
 	}
 
+	
 }
