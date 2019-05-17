@@ -24,7 +24,7 @@ public class Movie {
 	String also_known_as;// 其它名称
 	String wanting;//想看人数
 	String sale;//票房
-	String doubanrating；//豆瓣评分
+	String doubanrating;//豆瓣评分
 	
 	 /*
 	      {
