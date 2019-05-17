@@ -24,7 +24,7 @@ public class Movie {
 	String also_known_as;// 其它名称
 	String wanting;//想看人数
 	String sale;//票房
-
+	String doubanrating；//豆瓣评分
 	
 	 /*
 	      {
@@ -54,7 +54,7 @@ public class Movie {
 	
 	public Movie(String movieid, String rating, String genres, String runtime, String language, String title,
 			String poster, String writers, String film_locations, String directors, String rating_count, String actors,
-			String plot_simple, String year, String country, String type, String release_date, String also_known_as,String wanting，String sale) {
+			String plot_simple, String year, String country, String type, String release_date, String also_known_as,String wanting，String sale，String doubanrating) {
 		super();
 		this.movieid = movieid;
 		this.rating = rating;
@@ -76,6 +76,7 @@ public class Movie {
 		this.also_known_as = also_known_as;
 		this.wanting=wanting;
 		this.sale=sale;
+		this.doubanrating=doubanrating;
 	}
 
 	@Override
@@ -86,7 +87,7 @@ public class Movie {
 				+ film_locations + "\",\"directors\":\"" + directors + "\",\"rating_count\":\"" + rating_count
 				+ "\",\"actors\":\"" + actors + "\",\"plot_simple\":\"" + plot_simple + "\",\"year\":\"" + year
 				+ "\",\"country\":\"" + country + "\",\"type\":\"" + type + "\",\"release_date\":\"" + release_date
-				+ "\",\"also_known_as\":\"" + also_known_as + "\",\"wanting\":\"" + wanting+ "\",\"sale\":\"" + sale + "\"}";
+				+ "\",\"also_known_as\":\"" + also_known_as + "\",\"wanting\":\"" + wanting + "\",\"sale\":\"" + sale + "\",\"doubanrating\":\"" + doubanrating + "\"}";
 	}
 
 }
