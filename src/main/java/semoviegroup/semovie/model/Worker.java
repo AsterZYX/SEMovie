@@ -46,6 +46,10 @@ public class Worker {
 		this.role = role;
 	}
 
+	public Worker() {
+
+	}
+
 	@Override
 	public String toString() {
 		return "{\"name\":\"" + name + "\",\"identity\":\"" + identity + "\",\"img\":\"" + img + "\",\"role\":\"" + role
