@@ -47,7 +47,7 @@ public class SearchService {
 
 	public static void main(String[] args) {
 		SearchService ss = new SearchService();
-		ss.searchMovieById("", "少年的你");
+		ss.searchMovieById("248172", "复仇者联盟4：终局之战");
 	}
 
 	// 1.按关键字检索影片信息
@@ -98,10 +98,10 @@ public class SearchService {
 		 * "https://movie.douban.com/subject_search?search_text=???&cat=1002"; String
 		 * doubanid = "";
 		 */
-
 		String result = null;
 		String url = "http://v.juhe.cn/movie/index";// 请求接口地址
-		Map params = new HashMap();// 请求参数 params.put("title", moviename);//需要检索的影片标题,utf8编码的urlencode
+		Map params = new HashMap();// 请求参数
+		params.put("title", moviename);// 需要检索的影片标题,utf8编码的urlencode
 		params.put("smode", "");// <foncolor=red>是否精确查找，精确:1 模糊:0 默认1</font>
 		params.put("pagesize", "");// <font color=red>每次返回条数，默认20,最大50</font>
 		params.put("offset", "");// <font color=red>偏移量，默认0,最大760</font>
@@ -113,7 +113,8 @@ public class SearchService {
 			JSONObject object = JSONObject.fromObject(result);
 			if (object.getInt("error_code") == 0) {
 				System.out.println(object.get("result"));
-				s = object.get("result").toString().replaceAll("[", "");
+				s = object.get("result") + "";
+				s = s.substring(1, s.length() - 1);
 			} else {
 				System.out.println(object.get("error_code") + ":" + object.get("reason"));
 			}
@@ -134,7 +135,7 @@ public class SearchService {
 		Movie movie = new Movie(movieid, "", map.get("rating"), "-1", map.get("movieid"), "", map.get("runtime"),
 				map.get("language"), map.get("title"), map.get("poster"), map.get("writers"), map.get("film_locations"),
 				map.get("rating_count"), map.get("plot_simple"), map.get("year"), map.get("country"), map.get("type"),
-				map.get("release_date"), map.get("also_known_as"), null, null, null, null, null, null, null);
+				map.get("release_date"), map.get("also_known_as"), null, null, null, null, null, null);
 
 		if (map.get("rating").equals("-1")) {
 			movie.setState("即将上映");
@@ -157,10 +158,55 @@ public class SearchService {
 		}
 		movie.setGenres(genres);
 
-		
-		
-		
-		
+		SearchClient sc = new SearchClient();
+		try {
+			String loc = sc.searchByName(movieid, moviename);
+			SAXReader reader = new SAXReader();
+			File file = new File(loc);
+			Document document = reader.read(file);
+			Element root = document.getRootElement();
+			List<Element> childElements = root.elements();
+
+			ArrayList<Worker> directorList = new ArrayList<Worker>();
+			ArrayList<Worker> actorList = new ArrayList<Worker>();
+			ArrayList<String> picList = new ArrayList<String>();
+			for (Element child : childElements) {
+
+				List<Element> cchildElements = child.elements();
+				for (Element cchild : cchildElements) {
+					List<Attribute> attributeList = cchild.attributes();
+					/*
+					 * for (Attribute attr : attributeList) { System.out.println(attr.getName() +
+					 * ": " + attr.getValue()); }
+					 */
+					List<Element> ElementList = cchild.elements();
+					Worker w = new Worker();
+					if (ElementList.size() > 1 && ElementList.get(1).getText().equals("director")) {
+						w.setIdentity("director");
+						w.setImg(ElementList.get(2).getText());
+						w.setName(ElementList.get(0).getText());
+						w.setRole(ElementList.get(3).getText());
+						directorList.add(w);
+					} else if (ElementList.size() > 1 && ElementList.get(1).getText().equals("actor")) {
+						w.setIdentity("actor");
+						w.setImg(ElementList.get(2).getText());
+						w.setName(ElementList.get(0).getText());
+						w.setRole(ElementList.get(3).getText());
+						actorList.add(w);
+					} else {
+						picList.add(ElementList.get(0).getText());
+					}
+
+				}
+
+			}
+			movie.setActorList(actorList);
+			movie.setDirectorList(directorList);
+			movie.setPicList(picList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new ResultVO(0, "", movie);
 	}
 

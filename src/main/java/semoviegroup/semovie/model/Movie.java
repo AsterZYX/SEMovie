@@ -35,7 +35,7 @@ public class Movie {
 	ArrayList<String> picList;// 电影图集
 
 	SortedMap<Cinema, Double> maoyancinemaList;// 影院信息,价格
-	SortedMap<Cinema, Double> doubancinemaList;// 影院信息,价格
+	// SortedMap<Cinema, Double> doubancinemaList;// 影院信息,价格
 	SortedMap<Cinema, Double> taoppcinemaList;// 影院信息,价格
 
 	public String getMovieid() {
@@ -230,14 +230,6 @@ public class Movie {
 		this.maoyancinemaList = maoyancinemaList;
 	}
 
-	public SortedMap<Cinema, Double> getDoubancinemaList() {
-		return doubancinemaList;
-	}
-
-	public void setDoubancinemaList(SortedMap<Cinema, Double> doubancinemaList) {
-		this.doubancinemaList = doubancinemaList;
-	}
-
 	public SortedMap<Cinema, Double> getTaoppcinemaList() {
 		return taoppcinemaList;
 	}
@@ -254,7 +246,7 @@ public class Movie {
 			String rating_count, String plot_simple, String year, String country, String type, String release_date,
 			String also_known_as, ArrayList<String> genres, ArrayList<Worker> directorList, ArrayList<Worker> actorList,
 			ArrayList<String> picList, SortedMap<Cinema, Double> maoyancinemaList,
-			SortedMap<Cinema, Double> doubancinemaList, SortedMap<Cinema, Double> taoppcinemaList) {
+			SortedMap<Cinema, Double> taoppcinemaList) {
 		super();
 		this.movieid = movieid;
 		this.state = state;
@@ -280,7 +272,7 @@ public class Movie {
 		this.actorList = actorList;
 		this.picList = picList;
 		this.maoyancinemaList = maoyancinemaList;
-		this.doubancinemaList = doubancinemaList;
+
 		this.taoppcinemaList = taoppcinemaList;
 	}
 
@@ -294,8 +286,8 @@ public class Movie {
 				+ "\",\"year\":\"" + year + "\",\"country\":\"" + country + "\",\"type\":\"" + type
 				+ "\",\"release_date\":\"" + release_date + "\",\"also_known_as\":\"" + also_known_as + "\",\"genres\":"
 				+ genres + ",\"directorList\":" + directorList + ",\"actorList\":" + actorList + ",\"picList\":"
-				+ picList + ",\"maoyancinemaList\":" + maoyancinemaList + ",\"doubancinemaList\":" + doubancinemaList
-				+ ",\"taoppcinemaList\":" + taoppcinemaList + "}";
+				+ picList + ",\"maoyancinemaList\":" + maoyancinemaList + ",\"taoppcinemaList\":" + taoppcinemaList
+				+ "}";
 	}
 
 }
