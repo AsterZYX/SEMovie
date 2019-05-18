@@ -1,12 +1,15 @@
 package semoviegroup.semovie.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import semoviegroup.semovie.model.Movie;
+import semoviegroup.semovie.service.RankingListService;
 import semoviegroup.semovie.service.SearchService;
+import semoviegroup.semovie.service.StateService;
 import semoviegroup.semovie.vo.ResultVO;
 
 import java.util.List;
@@ -16,7 +19,10 @@ import java.util.List;
 public class MovieController {
 	@Autowired
 	SearchService searchService;
-
+	@Autowired
+	StateService stateService;
+	@Autowired
+	RankingListService rankingListService;
 	/**
 	 * 得到正在热映的电影
 	 * 
@@ -29,7 +35,7 @@ public class MovieController {
 	@GetMapping("/now")
 	public ResultVO<List<Movie>> getMoviesOnShow(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
-		return null;
+		return stateService.getMoviesOnShow(size, currentPage);
 	}
 
 	/**
@@ -40,7 +46,7 @@ public class MovieController {
 	@GetMapping("/next")
 	public ResultVO<List<Movie>> getMoviesOnNext(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
-		return null;
+		return stateService.getMoviesOnNext(size, currentPage);
 	}
 
 	/**
@@ -51,7 +57,7 @@ public class MovieController {
 	@GetMapping("/hot")
 	public ResultVO<List<Movie>> getHotestMovies(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
-		return null;
+		return stateService.getHotestMovies(size, currentPage);
 	}
 
 	/**
@@ -62,20 +68,31 @@ public class MovieController {
 	@GetMapping("/list/sales")
 	public ResultVO<List<Movie>> getMovieBoxOfficeList(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
-		return null;
+		return rankingListService.getMovieBoxOfficeList(size, currentPage);
 	}
 
 	/**
-	 * 得到评分榜单
+	 * 得到猫眼评分榜单
 	 * 
 	 * @return
 	 */
 	@GetMapping("/list/score")
 	public ResultVO<List<Movie>> getMovieScoreList(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
-		return null;
+		return rankingListService.getMaoyanRating(size, currentPage);
 	}
-
+	
+	/**
+	 * 得到豆瓣评分榜单
+	 * 
+	 * @return
+	 */
+	@GetMapping("/list/score")
+	public ResultVO<List<Movie>> getDoubanMovieScoreList(@RequestParam("size") Integer size,
+			@RequestParam("page") Integer currentPage) {
+		return rankingListService.getDoubanRating(size, currentPage);
+	}
+	
 	/**
 	 * 搜索电影
 	 * 
