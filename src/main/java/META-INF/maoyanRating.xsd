@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/maoyanRating"
+	xmlns:tns="http://www.example.org/maoyanRating" elementFormDefault="qualified">
+	<element name="maoyanRating">
+		<complexType>
+			<sequence>
+				<element name="maoyantitle" type="string" />
+				<element name="imageUrl" type="string" />
+				<element name="title" type="string" />
+				<element name="actor" type="string" />
+				<element name="time" type="string" />
+				<element name="score" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>
