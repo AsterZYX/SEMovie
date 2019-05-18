@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/box"
+	xmlns:tns="http://www.example.org/box" elementFormDefault="qualified">
+	<element name="box">
+		<complexType>
+			<sequence>
+				<element name="movieName" type="string" />
+				<element name="avgShowView" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>

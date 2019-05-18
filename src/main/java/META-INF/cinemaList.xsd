@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/cinemaList"
+	xmlns:tns="http://www.example.org/cinemaList" elementFormDefault="qualified">
+	<element name="cinemaList">
+		<complexType>
+			<sequence maxOccurs="unbounded">
+				<element name="cinema">
+					<complexType>
+						<sequence maxOccurs="unbounded">
+							<element name="CinemaName" type="string" />
+							<element name="CinemaLocation" type="string" />
+							<element name="price" type="string" />
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

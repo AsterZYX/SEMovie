@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/doubanRating"
+	xmlns:tns="http://www.example.org/doubanRating" elementFormDefault="qualified">
+	<element name="doubanRating">
+		<complexType>
+			<sequence>
+				<element name="title" type="string" />
+				<element name="rating" type="string" />
+				<element name="peoplecount" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>
