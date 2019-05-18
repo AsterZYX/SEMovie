@@ -8,6 +8,7 @@ import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,11 +16,12 @@ import semoviegroup.semovie.model.Movie;
 import semoviegroup.semovie.vo.ResultVO;
 import semoviegroup.semovie.service.StateClient;
 
+@Service
 public class StateService {
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		StateService ss = new StateService();
 		ss.getMoviesOnNext(0, 4);
-	}
+	}*/
 
 	/**
 	 * 得到正在热映的电影
@@ -47,31 +49,29 @@ public class StateService {
 			Movie movie = null;
 			for (Element child : childElements) {
 				movie = new Movie();
-
 				List<Element> attributeList = child.elements();
-				/*for (Element attr : attributeList) {
-					//System.out.println(attr.getText().length());
-					//System.out.println(attr.getText());
-					//if(attr.getText().length()>0) {
-					//System.out.println(attr.getName() + ": " + attr.getText().substring(3,6));
-					//}
-				}
-				*/
+				/*
+				 * for (Element attr : attributeList) {
+				 * //System.out.println(attr.getText().length());
+				 * //System.out.println(attr.getText()); //if(attr.getText().length()>0) {
+				 * //System.out.println(attr.getName() + ": " + attr.getText().substring(3,6));
+				 * //} }
+				 */
 
 				List<Element> elementList = child.elements();
 				movie.setTitle(elementList.get(0).getText());
 				movie.setDoubanrating(elementList.get(1).getText());
-				//movie.setPlot_simple(elementList.get(2).getText());
+				movie.setPoster(elementList.get(2).getText());
 				movielist.add(movie);
-				//System.out.println(movielist.toString());
+				// System.out.println(movielist.toString());
 			}
-			//System.out.println(movielist.toString());
+			// System.out.println(movielist.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		ResultVO vo = new ResultVO(0, "", movielist);
-		//System.out.println(vo);
+		// System.out.println(vo);
 		return vo;
 	}
 
@@ -102,11 +102,10 @@ public class StateService {
 				for (Element attr : attributeList) {
 					System.out.println(attr.getText().length());
 					System.out.println(attr.getText());
-					//if(attr.getText().length()>0) {
-					//System.out.println(attr.getName() + ": " + attr.getText().substring(3,6));
-					//}
+					// if(attr.getText().length()>0) {
+					// System.out.println(attr.getName() + ": " + attr.getText().substring(3,6));
+					// }
 				}
-				
 
 				List<Element> elementList = child.elements();
 				System.out.println(elementList.size());
@@ -116,7 +115,7 @@ public class StateService {
 				movie.setCountry(elementList.get(3).getText());
 				movie.setWanting(elementList.get(4).getText());
 				movielist.add(movie);
-				//System.out.println(movielist.toString());
+				// System.out.println(movielist.toString());
 			}
 			System.out.println(movielist.toString());
 		} catch (Exception e) {
@@ -124,7 +123,7 @@ public class StateService {
 			e.printStackTrace();
 		}
 		ResultVO vo = new ResultVO(0, "", movielist);
-		//System.out.println(vo);
+		// System.out.println(vo);
 		return vo;
 	}
 
@@ -136,7 +135,45 @@ public class StateService {
 	@GetMapping("/hot")
 	public ResultVO<List<Movie>> getHotestMovies(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
-		return null;
+		String URL = "";
+		StateClient sc = new StateClient();
+		List<Movie> movielist = new ArrayList<Movie>();
+
+		try {
+			String loc = sc.getHotestMovies(size, currentPage);
+			SAXReader reader = new SAXReader();
+			File file = new File(loc);
+			Document document = reader.read(file);
+			Element root = document.getRootElement();
+			List<Element> childElements = root.elements();
+			Movie movie = null;
+			for (Element child : childElements) {
+				movie = new Movie();
+
+				List<Element> attributeList = child.elements();
+				for (Element attr : attributeList) {
+					System.out.println(attr.getText().length());
+					System.out.println(attr.getText());
+					// if(attr.getText().length()>0) {
+					// System.out.println(attr.getName() + ": " + attr.getText().substring(3,6));
+					// }
+				}
+
+				List<Element> elementList = child.elements();
+				movie.setTitle(elementList.get(0).getText());
+				movie.setDoubanrating(elementList.get(1).getText());
+				// movie.setPlot_simple(elementList.get(2).getText());
+				movielist.add(movie);
+				// System.out.println(movielist.toString());
+			}
+			// System.out.println(movielist.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ResultVO vo = new ResultVO(0, "", movielist);
+		// System.out.println(vo);
+		return vo;
 	}
 
 }
