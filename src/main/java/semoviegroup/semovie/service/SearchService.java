@@ -147,7 +147,7 @@ public class SearchService {
 		int sale = Integer.parseInt(map.get("movieid"));
 		long sales = sale * sale;
 		String s1 = sales + "";
-		String s2 = s.charAt(0) + "." + s.charAt(1);
+		String s2 = s1.charAt(0) + "." + s1.charAt(1)+"亿";
 		movie.setSale(s2);
 
 		ArrayList<String> genres = new ArrayList<String>();
@@ -203,6 +203,17 @@ public class SearchService {
 			movie.setActorList(actorList);
 			movie.setDirectorList(directorList);
 			movie.setPicList(picList);
+			
+			
+			
+			String douBanRating = sc.searchDoubanRatingByName(moviename);
+			movie.setDoubanrating(douBanRating);
+			
+			
+			
+			
+			
+			System.out.println(movie.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
