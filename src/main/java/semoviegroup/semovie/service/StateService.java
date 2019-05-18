@@ -1,5 +1,17 @@
 package semoviegroup.semovie.service;
-import service.StateClient;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import semoviegroup.semovie.model.Movie;
+import semoviegroup.semovie.vo.ResultVO;
+import semoviegroup.semovie.service.StateClient;
 public class StateService {
 	 /**
      * 得到正在热映的电影
@@ -12,7 +24,7 @@ public class StateService {
                                                  @RequestParam("page") Integer currentPage){
         String URL="https://movie.douban.com/cinema/nowplaying/dongying/";
         StateClient sc=new StateClient();
-        List<Movie> =new ArrayList<Movie>();
+        List<Movie> movielist =new ArrayList<Movie>();
 
 		try {
 			String loc = sc.getMoviesOnShow(size,currentPage);
@@ -40,7 +52,7 @@ public class StateService {
 			e.printStackTrace();
 		}
 		ResultVO vo = new ResultVO(0, "", movielist);
-		return vo.;
+		return vo;
     }
 
 
