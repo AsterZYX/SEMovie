@@ -18,14 +18,14 @@ import semoviegroup.semovie.service.StateClient;
 
 @Service
 public class StateService {
-	/*public static void main(String[] args) {
-		StateService ss = new StateService();
-		ss.getMoviesOnNext(0, 4);
-	}*/
+	/*
+	 * public static void main(String[] args) { StateService ss = new
+	 * StateService(); ss.getMoviesOnNext(0, 4); }
+	 */
 
 	/**
 	 * 得到正在热映的电影
-	 * 
+	 *
 	 * @param size
 	 *            每页显示数量
 	 * @param currentPage
@@ -34,14 +34,15 @@ public class StateService {
 	 */
 	@GetMapping("/now")
 	public ResultVO<List<Movie>> getMoviesOnShow(@RequestParam("size") Integer size,
-			@RequestParam("page") Integer currentPage) {
+												 @RequestParam("page") Integer currentPage) {
 		String URL = "https://movie.douban.com/cinema/nowplaying/dongying/";
 		StateClient sc = new StateClient();
 		List<Movie> movielist = new ArrayList<Movie>();
 
 		try {
-			String loc = sc.getMoviesOnShow(size, currentPage);
+			// String loc = sc.getMoviesOnShow(size, currentPage);
 			SAXReader reader = new SAXReader();
+			String loc = "D:\\PycharmProjects\\SEmovie\\Showing.xml";
 			File file = new File(loc);
 			Document document = reader.read(file);
 			Element root = document.getRootElement();
@@ -77,19 +78,20 @@ public class StateService {
 
 	/**
 	 * 得到即将上映的电影
-	 * 
+	 *
 	 * @return
 	 */
 	@GetMapping("/next")
 	public ResultVO<List<Movie>> getMoviesOnNext(@RequestParam("size") Integer size,
-			@RequestParam("page") Integer currentPage) {
+												 @RequestParam("page") Integer currentPage) {
 		String URL = "https://movie.douban.com/coming";
 		StateClient sc = new StateClient();
 		List<Movie> movielist = new ArrayList<Movie>();
 
 		try {
-			String loc = sc.getMoviesOnNext(size, currentPage);
+			// String loc = sc.getMoviesOnNext(size, currentPage);
 			SAXReader reader = new SAXReader();
+			String loc = "D:\\PycharmProjects\\SEmovie\\Later.xml";
 			File file = new File(loc);
 			Document document = reader.read(file);
 			Element root = document.getRootElement();
@@ -129,19 +131,20 @@ public class StateService {
 
 	/**
 	 * 得到最热的电影
-	 * 
+	 *
 	 * @return
 	 */
 	@GetMapping("/hot")
 	public ResultVO<List<Movie>> getHotestMovies(@RequestParam("size") Integer size,
-			@RequestParam("page") Integer currentPage) {
+												 @RequestParam("page") Integer currentPage) {
 		String URL = "";
 		StateClient sc = new StateClient();
 		List<Movie> movielist = new ArrayList<Movie>();
 
 		try {
-			String loc = sc.getHotestMovies(size, currentPage);
+			// String loc = sc.getHotestMovies(size, currentPage);
 			SAXReader reader = new SAXReader();
+			String loc = "D:\\PycharmProjects\\SEmovie\\Hot.xml";
 			File file = new File(loc);
 			Document document = reader.read(file);
 			Element root = document.getRootElement();
@@ -162,7 +165,7 @@ public class StateService {
 				List<Element> elementList = child.elements();
 				movie.setTitle(elementList.get(0).getText());
 				movie.setDoubanrating(elementList.get(1).getText());
-				// movie.setPlot_simple(elementList.get(2).getText());
+				movie.setPoster(elementList.get(2).getText());
 				movielist.add(movie);
 				// System.out.println(movielist.toString());
 			}

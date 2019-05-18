@@ -149,9 +149,9 @@ public class SearchService {
 		}
 
 		int sale = Integer.parseInt(map.get("movieid"));
-		long sales = sale * sale;
+		long sales = sale;
 		String s1 = sales + "";
-		String s2 = s1.charAt(0) + "." + s1.charAt(1) + "亿";
+		String s2 = s1.charAt(0) + "." + s1.charAt(1);
 		movie.setSale(s2);
 
 		ArrayList<String> genres = new ArrayList<String>();
@@ -231,6 +231,7 @@ public class SearchService {
 		String result3 = null;
 		String url3 = "http://v.juhe.cn/movie/index";// 请求接口地址
 		Map params3 = new HashMap();// 请求参数
+		System.out.print(name);
 		params3.put("title", name);// 需要检索的影片标题,utf8编码的urlencode
 		params3.put("smode", "");// <foncolor=red>是否精确查找，精确:1 模糊:0 默认1</font>
 		params3.put("pagesize", "");// <font color=red>每次返回条数，默认20,最大50</font>
@@ -242,9 +243,10 @@ public class SearchService {
 			result3 = net(url3, params3, "GET");
 			JSONObject object = JSONObject.fromObject(result3);
 			if (object.getInt("error_code") == 0) {
-				// System.out.println(object.get("result"));
+				//System.out.println(object.get("result"));
 				s3 = object.get("result") + "";
 				s3 = s3.substring(1, s3.length() - 1);
+				System.out.println(s3);
 			} else {
 				System.out.println(object.get("error_code") + ":" + object.get("reason"));
 			}
@@ -253,6 +255,11 @@ public class SearchService {
 		}
 		Map<String, String> map3 = new Gson().fromJson(s3, new TypeToken<HashMap<String, String>>() {
 		}.getType());
+
+		for (Map.Entry<String, String> entry : map3.entrySet()) {
+			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		}
+
 		String juhemovieid = map3.get("movieid");
 
 		String result = null;
