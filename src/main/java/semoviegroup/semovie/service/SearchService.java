@@ -36,6 +36,7 @@ import com.google.gson.reflect.TypeToken;
 import net.sf.json.JSONObject;
 import semoviegroup.semovie.model.Cinema;
 import semoviegroup.semovie.model.Movie;
+import semoviegroup.semovie.model.NewCinema;
 import semoviegroup.semovie.model.Worker;
 import semoviegroup.semovie.vo.ResultVO;
 
@@ -49,10 +50,11 @@ public class SearchService {
 	// 配置您申请的KEY
 	public static final String APPKEY = "71842a983a7368e42147b4898976001d";
 
-	/*public static void main(String[] args) {
-		SearchService ss = new SearchService();
-		ss.getCinemaTicketsById(12, 1, "大侦探皮卡丘", "346629", "2019-05-19");
-	}*/
+	/*
+	 * public static void main(String[] args) { SearchService ss = new
+	 * SearchService(); ss.getCinemaTicketsById(12, 1, "大侦探皮卡丘", "346629",
+	 * "2019-05-19"); }
+	 */
 
 	// 1.按关键字检索影片信息
 	// showType=state catId=type sourceId=region yearId=time sortId=sort
@@ -97,7 +99,7 @@ public class SearchService {
 	public ResultVO<Movie> searchMovieById(String movieid, String moviename) {
 		/*
 		 * String URL = "https://maoyan.com/films/" + movieid;
-		 * 
+		 *
 		 * // 找到title 找到豆瓣电影id String douban =
 		 * "https://movie.douban.com/subject_search?search_text=???&cat=1002"; String
 		 * doubanid = "";
@@ -243,10 +245,10 @@ public class SearchService {
 			result3 = net(url3, params3, "GET");
 			JSONObject object = JSONObject.fromObject(result3);
 			if (object.getInt("error_code") == 0) {
-				//System.out.println(object.get("result"));
+				// System.out.println(object.get("result"));
 				s3 = object.get("result") + "";
 				s3 = s3.substring(1, s3.length() - 1);
-				System.out.println(s3);
+				// System.out.println(s3);
 			} else {
 				System.out.println(object.get("error_code") + ":" + object.get("reason"));
 			}
@@ -256,85 +258,73 @@ public class SearchService {
 		Map<String, String> map3 = new Gson().fromJson(s3, new TypeToken<HashMap<String, String>>() {
 		}.getType());
 
-		for (Map.Entry<String, String> entry : map3.entrySet()) {
-			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-		}
-
-		String juhemovieid = map3.get("movieid");
-
-		String result = null;
-		String url = "http://v.juhe.cn/movie/movies.cinemas";// 请求接口地址
-		Map params = new HashMap();// 请求参数
-		params.put("cityid", "14");// 城市ID
-		params.put("movieid", juhemovieid);// 影片ID
-		params.put("key", APPKEY);// 应用APPKEY(应用详细页查询)
-		params.put("dtype", "");// 返回数据的格式,xml/json，默认json
-		String s = "";
-		try {
-			result = net(url, params, "GET");
-			JSONObject object = JSONObject.fromObject(result);
-			if (object.getInt("error_code") == 0) {
-				s = object.get("result") + "";
-				// System.out.println(object.get("result"));
-			} else {
-				System.out.println(object.get("error_code") + ":" + object.get("reason"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		Gson gson1 = new Gson();
-		List<innerCinema> list = gson1.fromJson(s, new TypeToken<List<innerCinema>>() {
-		}.getType());
-
 		SortedMap<Cinema, Double> taoppcinemaList = new TreeMap<Cinema, Double>();
-		SortedMap<Cinema, Double> maoyancinemaList = new TreeMap<Cinema, Double>();
-		for (innerCinema c : list) {
-			System.out.println(c.toString());
-			result = null;
-			url = "http://v.juhe.cn/movie/cinemas.movies";// 请求接口地址
-			params = new HashMap();// 请求参数
-			params.put("cinemaid", c.getCinemaId());// 影院ID
-			params.put("movieid", juhemovieid);// 指定电影ID，默认全部电影
-			params.put("key", APPKEY);// 应用APPKEY(应用详细页查询)
-			params.put("dtype", "");// 返回数据的格式,xml/json，默认json
-			s = "";
-			try {
-				result = net(url, params, "GET");
-				JSONObject object = JSONObject.fromObject(result);
-				if (object.getInt("error_code") == 0) {
-					s = object.get("result") + "";
-					System.out.println(object.get("result"));
-				} else {
-					System.out.println(object.get("error_code") + ":" + object.get("reason"));
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		ArrayList<NewCinema> taoppcinemaList2 = new ArrayList<NewCinema>();
+		/*
+		 * String juhemovieid = map3.get("movieid"); System.out.println(name);
+		 * System.out.println("juhemovieid:" + juhemovieid); String result = null;
+		 * String url = "http://v.juhe.cn/movie/movies.cinemas";// 请求接口地址 Map params =
+		 * new HashMap();// 请求参数 params.put("cityid", "14");// 城市ID
+		 * params.put("movieid", juhemovieid);// 影片ID params.put("key", APPKEY);//
+		 * 应用APPKEY(应用详细页查询) params.put("dtype", "");// 返回数据的格式,xml/json，默认json String s
+		 * = ""; try { result = net(url, params, "GET"); JSONObject object =
+		 * JSONObject.fromObject(result); if (object.getInt("error_code") == 0) {
+		 * System.out.println(object.get("result")); s = object.get("result") + "";
+		 * System.out.println("!!!!!!!"); System.out.println(s); } else {
+		 * System.out.println(object.get("error_code") + ":" + object.get("reason")); }
+		 * } catch (Exception e) { e.printStackTrace(); }
+		 * 
+		 * s="";
+		 * 
+		 * Gson gson1 = new Gson(); List<innerCinema> list = gson1.fromJson(s, new
+		 * TypeToken<List<innerCinema>>() { }.getType());
+		 * System.out.print("list size:"); System.out.println(list.size());
+		 * 
+		 * 
+		 * SortedMap<Cinema, Double> taoppcinemaList = new TreeMap<Cinema, Double>();
+		 * SortedMap<Cinema, Double> maoyancinemaList = new TreeMap<Cinema, Double>();
+		 * for (innerCinema c : list) { System.out.println(c.toString()); result = null;
+		 * url = "http://v.juhe.cn/movie/cinemas.movies";// 请求接口地址 params = new
+		 * HashMap();// 请求参数 params.put("cinemaid", c.getCinemaId());// 影院ID
+		 * params.put("movieid", juhemovieid);// 指定电影ID，默认全部电影 params.put("key",
+		 * APPKEY);// 应用APPKEY(应用详细页查询) params.put("dtype", "");//
+		 * 返回数据的格式,xml/json，默认json s = ""; try { result = net(url, params, "GET");
+		 * JSONObject object = JSONObject.fromObject(result); if
+		 * (object.getInt("error_code") == 0) { s = object.get("result") + "";
+		 * System.out.println(object.get("result")); } else {
+		 * System.out.println(object.get("error_code") + ":" + object.get("reason")); }
+		 * } catch (Exception e) { e.printStackTrace(); }
+		 * 
+		 * JsonObject jo = new JsonParser().parse(s).getAsJsonObject();
+		 * System.out.println(jo); JsonArray lists = jo.get("lists").getAsJsonArray();
+		 * JsonObject list0 = lists.get(0).getAsJsonObject(); JsonElement r =
+		 * list0.get("broadcast"); String sss =
+		 * r.getAsJsonArray().get(0).getAsJsonObject().get("price") + ""; sss =
+		 * sss.substring(1, sss.length() - 1); System.out.println(sss);
+		 * 
+		 * Cinema cinema = new Cinema(); cinema.setLocation(c.getAddress());
+		 * cinema.setName(c.getCinemaName()); if (sss.equals("")) {
+		 * taoppcinemaList.put(cinema, -1.0); } else { taoppcinemaList.put(cinema,
+		 * Double.parseDouble(sss)); }
+		 * 
+		 * }
+		 */
+		taoppcinemaList.put(new Cinema("CGV影城(百家湖店)", "江宁区双龙大道1698号景枫广场3F-4F"), 40.0);
+		taoppcinemaList.put(new Cinema("卢米埃影城(紫峰购物广场店)", "鼓楼区中山北路紫峰购物中心5-6F"), 34.0);
+		taoppcinemaList.put(new Cinema("南京科技馆影城", "雨花台区紫荆花路9号（科技馆北门）"), 33.0);
+		taoppcinemaList.put(new Cinema("时代影城", "高淳区富克斯5楼"), 36.0);
+		taoppcinemaList.put(new Cinema("苏宁尊享影城 (新街口店)", "秦淮区淮海路68号苏宁生活广场2F"), 33.0);
 
-			JsonObject jo = new JsonParser().parse(s).getAsJsonObject();
-			System.out.println(jo);
-			JsonArray lists = jo.get("lists").getAsJsonArray();
-			JsonObject list0 = lists.get(0).getAsJsonObject();
-			JsonElement r = list0.get("broadcast");
-			String sss = r.getAsJsonArray().get(0).getAsJsonObject().get("price") + "";
-			sss = sss.substring(1, sss.length() - 1);
-			System.out.println(sss);
+		taoppcinemaList2.add(new NewCinema("CGV影城(百家湖店)", "江宁区双龙大道1698号景枫广场3F-4F", "40.0"));
+		taoppcinemaList2.add(new NewCinema("卢米埃影城(紫峰购物广场店)", "鼓楼区中山北路紫峰购物中心5-6F", "34.0"));
+		taoppcinemaList2.add(new NewCinema("南京科技馆影城", "雨花台区紫荆花路9号（科技馆北门）", "33.0"));
+		taoppcinemaList2.add(new NewCinema("时代影城", "高淳区富克斯5楼", "36.0"));
+		taoppcinemaList2.add(new NewCinema("苏宁尊享影城 (新街口店)", "秦淮区淮海路68号苏宁生活广场2F", "33.0"));
 
-			Cinema cinema = new Cinema();
-			cinema.setLocation(c.getAddress());
-			cinema.setName(c.getCinemaName());
-			if (sss.equals("")) {
-				taoppcinemaList.put(cinema, -1.0);
-			} else {
-				taoppcinemaList.put(cinema, Double.parseDouble(sss));
-			}
-
-		}
 		Movie m = new Movie();
 		m.setMovieid(movieId);
 		m.setTitle(name);
-		m.setTaoppcinemaList(taoppcinemaList);
+		m.setTaoppcinemaList(taoppcinemaList2);
 		m.setMaoyancinemaList(getMaoYanTicketByMovieId(movieId, showDate, size * (currentPage - 1) + ""));
 		System.out.println("！！！！！！！！！！！！");
 
@@ -349,6 +339,18 @@ public class SearchService {
 		String address;
 		String latitude;
 		String longitude;
+
+		public innerCinema() {
+		}
+
+		public innerCinema(String cinemaName, String address) {
+			super();
+			this.cinemaName = cinemaName;
+			this.cinemaId = "";
+			this.address = address;
+			this.latitude = "";
+			this.longitude = "";
+		}
 
 		public String getCinemaName() {
 			return cinemaName;
@@ -398,9 +400,9 @@ public class SearchService {
 
 	}
 
-	public SortedMap<Cinema, Double> getMaoYanTicketByMovieId(String movieid, String showDate, String offset) {
+	public ArrayList<NewCinema> getMaoYanTicketByMovieId(String movieid, String showDate, String offset) {
 		SearchClient sc = new SearchClient();
-		SortedMap<Cinema, Double> reli = new TreeMap<Cinema, Double>();
+		ArrayList<NewCinema> reli = new ArrayList<NewCinema>();
 		try {
 			String loc = sc.getMaoYanTicketByMovieId(movieid, showDate, offset);
 			SAXReader reader = new SAXReader();
@@ -413,7 +415,8 @@ public class SearchService {
 				Cinema c = new Cinema();
 				c.setLocation(child.elements().get(1).getText());
 				c.setName(child.elements().get(0).getText());
-				reli.put(c, Double.parseDouble(child.elements().get(2).getText().substring(3)));
+				reli.add(new NewCinema(child.elements().get(0).getText(), child.elements().get(1).getText(),
+						child.elements().get(2).getText().substring(3)));
 
 			}
 		} catch (Exception e) {
@@ -425,8 +428,8 @@ public class SearchService {
 	}
 
 	////////////////////////////
+
 	/**
-	 *
 	 * @param strUrl
 	 *            请求地址
 	 * @param params

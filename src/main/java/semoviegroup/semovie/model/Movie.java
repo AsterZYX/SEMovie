@@ -34,9 +34,12 @@ public class Movie {
 	ArrayList<Worker> actorList;// 演员图像
 	ArrayList<String> picList;// 电影图集
 
-	SortedMap<Cinema, Double> maoyancinemaList;// 影院信息,价格
+	// SortedMap<Cinema, Double> maoyancinemaList;// 影院信息,价格
 	// SortedMap<Cinema, Double> doubancinemaList;// 影院信息,价格
-	SortedMap<Cinema, Double> taoppcinemaList;// 影院信息,价格
+	// SortedMap<Cinema, Double> taoppcinemaList;// 影院信息,价格
+
+	ArrayList<NewCinema> maoyancinemaList;
+	ArrayList<NewCinema> taoppcinemaList;
 
 	public String getMovieid() {
 		return movieid;
@@ -222,19 +225,19 @@ public class Movie {
 		this.picList = picList;
 	}
 
-	public SortedMap<Cinema, Double> getMaoyancinemaList() {
+	public ArrayList<NewCinema> getMaoyancinemaList() {
 		return maoyancinemaList;
 	}
 
-	public void setMaoyancinemaList(SortedMap<Cinema, Double> maoyancinemaList) {
+	public void setMaoyancinemaList(ArrayList<NewCinema> maoyancinemaList) {
 		this.maoyancinemaList = maoyancinemaList;
 	}
 
-	public SortedMap<Cinema, Double> getTaoppcinemaList() {
+	public ArrayList<NewCinema> getTaoppcinemaList() {
 		return taoppcinemaList;
 	}
 
-	public void setTaoppcinemaList(SortedMap<Cinema, Double> taoppcinemaList) {
+	public void setTaoppcinemaList(ArrayList<NewCinema> taoppcinemaList) {
 		this.taoppcinemaList = taoppcinemaList;
 	}
 
@@ -245,8 +248,7 @@ public class Movie {
 			String runtime, String language, String title, String poster, String writers, String film_locations,
 			String rating_count, String plot_simple, String year, String country, String type, String release_date,
 			String also_known_as, ArrayList<String> genres, ArrayList<Worker> directorList, ArrayList<Worker> actorList,
-			ArrayList<String> picList, SortedMap<Cinema, Double> maoyancinemaList,
-			SortedMap<Cinema, Double> taoppcinemaList) {
+			ArrayList<String> picList, ArrayList<NewCinema> maoyancinemaList, ArrayList<NewCinema> taoppcinemaList) {
 		super();
 		this.movieid = movieid;
 		this.state = state;
@@ -272,7 +274,6 @@ public class Movie {
 		this.actorList = actorList;
 		this.picList = picList;
 		this.maoyancinemaList = maoyancinemaList;
-
 		this.taoppcinemaList = taoppcinemaList;
 	}
 
