@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import semoviegroup.semovie.model.Movie;
 import semoviegroup.semovie.vo.ResultVO;
 
-public class SearchClient {
+public class StateClient {
 
 	public String getMoviesOnShow(Integer size,Integer currentPage) throws Exception {
 		String URL = "https://movie.douban.com/cinema/nowplaying/dongying/";
@@ -56,7 +56,7 @@ public class SearchClient {
 		is.close();
 		in.close();
 		client.close();
-		System.out.println(s)
+		System.out.println(s);
 		return s.substring(16);
 
 	}

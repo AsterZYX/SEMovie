@@ -1,6 +1,9 @@
 package semoviegroup.semovie.model;
 
-public class Cinema {
+import java.text.Collator;
+import java.util.Locale;
+
+public class Cinema implements Comparable {
 	String name;
 	String location;
 
@@ -8,6 +11,10 @@ public class Cinema {
 		super();
 		this.name = name;
 		this.location = location;
+	}
+
+	public Cinema() {
+
 	}
 
 	public String getName() {
@@ -29,6 +36,13 @@ public class Cinema {
 	@Override
 	public String toString() {
 		return "{\"name\":\"" + name + "\",\"location\":\"" + location + "\"}";
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		Collator instance = Collator.getInstance(Locale.CHINA);
+		return instance.compare(this.toString(), o.toString());
 	}
 
 }

@@ -123,17 +123,23 @@ public class MovieController {
 	 * 得到电影购票信息
 	 * 
 	 * @param size
-	 *            每页显示数量
+	 *            12 每页显示数量
 	 * @param currentPage
-	 *            当前页数
+	 *            从1开始 当前页数
+	 * @param title
+	 *            电影名称
 	 * @param movieId
 	 *            电影编号
+	 * @param showDate
+	 *            日期 //格式： 2019-05-18
+	 * 
 	 * @return
 	 */
 	@GetMapping("/ticket")
 	public ResultVO<Movie> getCinemaTicketsById(@RequestParam("size") Integer size,
-			@RequestParam("page") Integer currentPage, @RequestParam("id") String movieId) {
-		return null;
+			@RequestParam("page") Integer currentPage, @RequestParam("title") String movieName,
+			@RequestParam("id") String movieId, @RequestParam("showDate") String showDate) {
+		return searchService.getCinemaTicketsById(size, currentPage, movieName, movieId, showDate);
 	}
 
 }
