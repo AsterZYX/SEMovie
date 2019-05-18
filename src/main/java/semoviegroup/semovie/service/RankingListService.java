@@ -17,13 +17,14 @@ import semoviegroup.semovie.vo.ResultVO;
 
 @Service
 public class RankingListService {
-	/*
-	 * public static void main(String args[]) { RankingListService rs = new
-	 * RankingListService(); rs.getDoubanRating(0, 0); }
-	 */
+
+	public static void main(String args[]) {
+		RankingListService rs = new RankingListService();
+		rs.getMovieBoxOfficeList(0, 0);
+	}
 
 	public ResultVO<List<Movie>> getMovieBoxOfficeList(@RequestParam("size") Integer size,
-			@RequestParam("page") Integer currentPage) {
+													   @RequestParam("page") Integer currentPage) {
 
 		// String URL = "https://movie.douban.com/cinema/nowplaying/dongying/";
 		String URL = "https://box.maoyan.com/promovie/api/box/second.json";
@@ -31,8 +32,9 @@ public class RankingListService {
 		List<Movie> movielist = new ArrayList<Movie>();
 
 		try {
-			String loc = rc.getMaoyanBoxList();
+			//String loc = rc.getMaoyanBoxList();
 			SAXReader reader = new SAXReader();
+			String loc="D:\\PycharmProjects\\SEmovie\\Box.xml";
 			File file = new File(loc);
 			Document document = reader.read(file);
 			Element root = document.getRootElement();
@@ -61,15 +63,17 @@ public class RankingListService {
 
 	// 猫眼评分
 	public ResultVO<List<Movie>> getMaoyanRating(@RequestParam("size") Integer size,
-			@RequestParam("page") Integer currentPage) {
+												 @RequestParam("page") Integer currentPage) {
 
 		String URL = "http://maoyan.com/board/4?offset=" + (currentPage - 1) * size;
 		RankingListClient rc = new RankingListClient();
 		List<Movie> movielist = new ArrayList<Movie>();
 
 		try {
-			String loc = rc.getMaoyanRating(size, currentPage);
+			//String loc = rc.getMaoyanRating(size, currentPage);
 			SAXReader reader = new SAXReader();
+			String loc="D:\\PycharmProjects\\SEmovie\\maoyanRating.xml";
+
 			File file = new File(loc);
 			Document document = reader.read(file);
 			Element root = document.getRootElement();
@@ -111,14 +115,15 @@ public class RankingListService {
 
 	// 豆瓣评分
 	public ResultVO<List<Movie>> getDoubanRating(@RequestParam("size") Integer size,
-			@RequestParam("page") Integer currentPage) {
+												 @RequestParam("page") Integer currentPage) {
 
 		RankingListClient rc = new RankingListClient();
 		List<Movie> movielist = new ArrayList<Movie>();
 
 		try {
-			String loc = rc.getDoubanRating();
+			//String loc = rc.getDoubanRating();
 			SAXReader reader = new SAXReader();
+			String loc="D:\\PycharmProjects\\SEmovie\\Rating100.xml";
 			File file = new File(loc);
 			Document document = reader.read(file);
 			Element root = document.getRootElement();

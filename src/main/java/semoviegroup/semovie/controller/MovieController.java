@@ -76,7 +76,7 @@ public class MovieController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/list/score")
+	@GetMapping("/list/score/maoyan")
 	public ResultVO<List<Movie>> getMovieScoreList(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
 		return rankingListService.getMaoyanRating(size, currentPage);
@@ -87,7 +87,7 @@ public class MovieController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/list/score")
+	@GetMapping("/list/score/douban")
 	public ResultVO<List<Movie>> getDoubanMovieScoreList(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
 		return rankingListService.getDoubanRating(size, currentPage);
