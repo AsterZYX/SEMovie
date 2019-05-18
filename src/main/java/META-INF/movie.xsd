@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/movie"
+	xmlns:tns="http://www.example.org/movie" elementFormDefault="qualified">
+	<element name="movie">
+		<complexType>
+			<sequence>
+				<element name="directorList">
+					<complexType>
+						<!-- maxOccurs表示最大出现次数 -->
+						<sequence maxOccurs="unbounded ">
+							<element name="director">
+								<complexType>
+									<sequence maxOccurs="unbounded">
+										<element name="name" type="string" />
+										<element name="identity" type="string" />
+										<element name="img" type="string" />
+										<element name="role" type="string" />
+									</sequence>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+				<element name="actorList">
+					<complexType>
+						<!-- maxOccurs表示最大出现次数 -->
+						<sequence maxOccurs="unbounded ">
+							<element name="actor">
+								<complexType>
+									<sequence maxOccurs="unbounded">
+										<element name="name" type="string" />
+										<element name="identity" type="string" />
+										<element name="img" type="string" />
+										<element name="role" type="string" />
+									</sequence>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+
+				<element name="picList">
+					<complexType>
+						<!-- maxOccurs表示最大出现次数 -->
+						<sequence maxOccurs="unbounded ">
+							<element name="pic">
+								<complexType>
+									<sequence maxOccurs="unbounded">
+										<element name="img" type="string" />
+									</sequence>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
