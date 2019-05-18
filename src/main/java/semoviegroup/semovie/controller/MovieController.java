@@ -76,7 +76,7 @@ public class MovieController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/list/score")
+	@GetMapping("/list/score/maoyan")
 	public ResultVO<List<Movie>> getMovieScoreList(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
 		return rankingListService.getMaoyanRating(size, currentPage);
@@ -87,7 +87,7 @@ public class MovieController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/list/score")
+	@GetMapping("/list/score/douban")
 	public ResultVO<List<Movie>> getDoubanMovieScoreList(@RequestParam("size") Integer size,
 			@RequestParam("page") Integer currentPage) {
 		return rankingListService.getDoubanRating(size, currentPage);
@@ -126,7 +126,7 @@ public class MovieController {
 	 * 
 	 * @param movieId
 	 *            电影编号
-	 * @param title
+	 * @param moviename
 	 *            电影名称
 	 * @return
 	 */
@@ -143,7 +143,7 @@ public class MovieController {
 	 *            12 每页显示数量
 	 * @param currentPage
 	 *            从1开始 当前页数
-	 * @param title
+	 * @param movieName
 	 *            电影名称
 	 * @param movieId
 	 *            电影编号
