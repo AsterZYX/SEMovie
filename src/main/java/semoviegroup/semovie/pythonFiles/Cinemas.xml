@@ -8,22 +8,12 @@
 	<cinema>
 		<CinemaName>CGV影城(百家湖店)</CinemaName>
 		<CinemaLocation>地址：江宁区双龙大道1698号景枫广场3F-4F</CinemaLocation>
-		<price>票价：40</price>
-	</cinema>
-	<cinema>
-		<CinemaName>时代影城</CinemaName>
-		<CinemaLocation>地址：高淳区富克斯5楼</CinemaLocation>
 		<price>票价：36</price>
 	</cinema>
 	<cinema>
 		<CinemaName>中广汪海国际影城</CinemaName>
 		<CinemaLocation>地址：雨花台区板桥街道雄风路汪海商业街486号（国美电器梅山店）</CinemaLocation>
-		<price>票价：28</price>
-	</cinema>
-	<cinema>
-		<CinemaName>南京科技馆影城</CinemaName>
-		<CinemaLocation>地址：雨花台区紫荆花路9号（科技馆北门）</CinemaLocation>
-		<price>票价：33</price>
+		<price>票价：23</price>
 	</cinema>
 	<cinema>
 		<CinemaName>耀莱成龙影城(板桥店)</CinemaName>
@@ -36,14 +26,9 @@
 		<price>票价：29</price>
 	</cinema>
 	<cinema>
-		<CinemaName>苏宁尊享影城 (新街口店)</CinemaName>
-		<CinemaLocation>地址：秦淮区淮海路68号苏宁生活广场2F</CinemaLocation>
-		<price>票价：33</price>
-	</cinema>
-	<cinema>
 		<CinemaName>卢米埃影城(紫峰购物广场店)</CinemaName>
 		<CinemaLocation>地址：鼓楼区中山北路紫峰购物中心5-6F</CinemaLocation>
-		<price>票价：34</price>
+		<price>票价：32</price>
 	</cinema>
 	<cinema>
 		<CinemaName>大地影院(浦口店)</CinemaName>
@@ -59,5 +44,20 @@
 		<CinemaName>新街口国际影城(德基广场IMAX店)</CinemaName>
 		<CinemaLocation>地址：玄武区中山路18号德基广场7楼（近地铁新街口站）</CinemaLocation>
 		<price>票价：34.5</price>
+	</cinema>
+	<cinema>
+		<CinemaName>金逸影城(明发店)</CinemaName>
+		<CinemaLocation>地址：浦口区滨江大道1号明发滨江新城249栋3楼</CinemaLocation>
+		<price>票价：33.5</price>
+	</cinema>
+	<cinema>
+		<CinemaName>UME影城(南京1912店)</CinemaName>
+		<CinemaLocation>地址：玄武区碑亭巷杨将军巷9号曼度文化广场3楼（近太平北路1912）</CinemaLocation>
+		<price>票价：24.5</price>
+	</cinema>
+	<cinema>
+		<CinemaName>UME影城(南京玄武门店)</CinemaName>
+		<CinemaLocation>地址：鼓楼区中央路201号南京金茂汇6楼北区</CinemaLocation>
+		<price>票价：32.5</price>
 	</cinema>
 </cinemalist>
