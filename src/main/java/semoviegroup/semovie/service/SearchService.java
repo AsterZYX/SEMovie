@@ -261,76 +261,116 @@ public class SearchService {
         }.getType());
 
         SortedMap<Cinema, Double> taoppcinemaList = new TreeMap<Cinema, Double>();
+        ArrayList<NewCinema> taoppcinemaListJUHE = new ArrayList<NewCinema>();
         ArrayList<NewCinema> taoppcinemaList2 = new ArrayList<NewCinema>();
-        /*
-         * String juhemovieid = map3.get("movieid"); System.out.println(name);
-         * System.out.println("juhemovieid:" + juhemovieid); String result = null;
-         * String url = "http://v.juhe.cn/movie/movies.cinemas";// 请求接口地址 Map params =
-         * new HashMap();// 请求参数 params.put("cityid", "14");// 城市ID
-         * params.put("movieid", juhemovieid);// 影片ID params.put("key", APPKEY);//
-         * 应用APPKEY(应用详细页查询) params.put("dtype", "");// 返回数据的格式,xml/json，默认json String s
-         * = ""; try { result = net(url, params, "GET"); JSONObject object =
-         * JSONObject.fromObject(result); if (object.getInt("error_code") == 0) {
-         * System.out.println(object.get("result")); s = object.get("result") + "";
-         * System.out.println("!!!!!!!"); System.out.println(s); } else {
-         * System.out.println(object.get("error_code") + ":" + object.get("reason")); }
-         * } catch (Exception e) { e.printStackTrace(); }
-         *
-         * s="";
-         *
-         * Gson gson1 = new Gson(); List<innerCinema> list = gson1.fromJson(s, new
-         * TypeToken<List<innerCinema>>() { }.getType());
-         * System.out.print("list size:"); System.out.println(list.size());
-         *
-         *
-         * SortedMap<Cinema, Double> taoppcinemaList = new TreeMap<Cinema, Double>();
-         * SortedMap<Cinema, Double> maoyancinemaList = new TreeMap<Cinema, Double>();
-         * for (innerCinema c : list) { System.out.println(c.toString()); result = null;
-         * url = "http://v.juhe.cn/movie/cinemas.movies";// 请求接口地址 params = new
-         * HashMap();// 请求参数 params.put("cinemaid", c.getCinemaId());// 影院ID
-         * params.put("movieid", juhemovieid);// 指定电影ID，默认全部电影 params.put("key",
-         * APPKEY);// 应用APPKEY(应用详细页查询) params.put("dtype", "");//
-         * 返回数据的格式,xml/json，默认json s = ""; try { result = net(url, params, "GET");
-         * JSONObject object = JSONObject.fromObject(result); if
-         * (object.getInt("error_code") == 0) { s = object.get("result") + "";
-         * System.out.println(object.get("result")); } else {
-         * System.out.println(object.get("error_code") + ":" + object.get("reason")); }
-         * } catch (Exception e) { e.printStackTrace(); }
-         *
-         * JsonObject jo = new JsonParser().parse(s).getAsJsonObject();
-         * System.out.println(jo); JsonArray lists = jo.get("lists").getAsJsonArray();
-         * JsonObject list0 = lists.get(0).getAsJsonObject(); JsonElement r =
-         * list0.get("broadcast"); String sss =
-         * r.getAsJsonArray().get(0).getAsJsonObject().get("price") + ""; sss =
-         * sss.substring(1, sss.length() - 1); System.out.println(sss);
-         *
-         * Cinema cinema = new Cinema(); cinema.setLocation(c.getAddress());
-         * cinema.setName(c.getCinemaName()); if (sss.equals("")) {
-         * taoppcinemaList.put(cinema, -1.0); } else { taoppcinemaList.put(cinema,
-         * Double.parseDouble(sss)); }
-         *
-         * }
-         */
-        taoppcinemaList.put(new Cinema("CGV影城(百家湖店)", "江宁区双龙大道1698号景枫广场3F-4F"), 40.0);
-        taoppcinemaList.put(new Cinema("卢米埃影城(紫峰购物广场店)", "鼓楼区中山北路紫峰购物中心5-6F"), 34.0);
-        taoppcinemaList.put(new Cinema("南京科技馆影城", "雨花台区紫荆花路9号（科技馆北门）"), 33.0);
-        taoppcinemaList.put(new Cinema("时代影城", "高淳区富克斯5楼"), 36.0);
-        taoppcinemaList.put(new Cinema("苏宁尊享影城 (新街口店)", "秦淮区淮海路68号苏宁生活广场2F"), 33.0);
 
-        taoppcinemaList2.add(new NewCinema("CGV影城(百家湖店)", "江宁区双龙大道1698号景枫广场3F-4F", "40.0"));
-        taoppcinemaList2.add(new NewCinema("卢米埃影城(紫峰购物广场店)", "鼓楼区中山北路紫峰购物中心5-6F", "34.0"));
-        taoppcinemaList2.add(new NewCinema("南京科技馆影城", "雨花台区紫荆花路9号（科技馆北门）", "33.0"));
-        taoppcinemaList2.add(new NewCinema("时代影城", "高淳区富克斯5楼", "36.0"));
-        taoppcinemaList2.add(new NewCinema("苏宁尊享影城 (新街口店)", "秦淮区淮海路68号苏宁生活广场2F", "33.0"));
+        String juhemovieid = map3.get("movieid");
+        System.out.println(name);
+        System.out.println("juhemovieid:" + juhemovieid);
+        String result = null;
+        String url = "http://v.juhe.cn/movie/movies.cinemas";
+        Map params = new HashMap();
+        params.put("cityid", "14");
+        params.put("movieid", juhemovieid);
+        params.put("key", APPKEY);
+        params.put("dtype", "");
+        String s = "";
+        try {
+            result = net(url, params, "GET");
+            JSONObject object =
+                    JSONObject.fromObject(result);
+            if (object.getInt("error_code") == 0) {
+                System.out.println(object.get("result"));
+                s = object.get("result") + "";
+                System.out.println("!!!!!!!");
+                // System.out.println(s);
+            } else {
+                System.out.println(object.get("error_code") + ":" + object.get("reason"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Gson gson1 = new Gson();
+        List<innerCinema> list = gson1.fromJson(s, new
+                TypeToken<List<innerCinema>>() {
+                }.getType());
+        System.out.print("list size:");
+        System.out.println(list.size());
+
+
+        for (innerCinema c : list) {
+            System.out.println(c.toString());
+            result = null;
+            url = "http://v.juhe.cn/movie/cinemas.movies";
+            params = new HashMap();
+            params.put("cinemaid", c.getCinemaId());
+            params.put("movieid", juhemovieid);
+            params.put("key", APPKEY);
+            params.put("dtype", "");
+            s = "";
+            try {
+                result = net(url, params, "GET");
+                JSONObject object = JSONObject.fromObject(result);
+                if (object.getInt("error_code") == 0) {
+                    s = object.get("result") + "";
+                } else {
+                    System.out.println(object.get("error_code") + ":" + object.get("reason"));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            JsonObject jo = new JsonParser().parse(s).getAsJsonObject();
+            System.out.println(jo);
+            JsonArray lists = jo.get("lists").getAsJsonArray();
+            JsonObject list0 = lists.get(0).getAsJsonObject();
+            JsonElement r =
+                    list0.get("broadcast");
+            String sss =
+                    r.getAsJsonArray().get(0).getAsJsonObject().get("price") + "";
+            sss =
+                    sss.substring(1, sss.length() - 1);
+            System.out.println(sss);
+
+            Cinema cinema = new Cinema();
+            cinema.setLocation(c.getAddress());
+            cinema.setName(c.getCinemaName());
+            if (sss.equals("")) {
+                taoppcinemaListJUHE.add(new NewCinema(cinema.getName(), cinema.getLocation(), "-1.0"));
+                taoppcinemaList.put(cinema, -1.0);
+            } else {
+                taoppcinemaListJUHE.add(new NewCinema(cinema.getName(), cinema.getLocation(), sss));
+                taoppcinemaList.put(cinema,
+                        Double.parseDouble(sss));
+            }
+
+        }
+
+        //taoppcinemaList.put(new Cinema("CGV影城(百家湖店)", "江宁区双龙大道1698号景枫广场3F-4F"), 40.0);
+        // taoppcinemaList.put(new Cinema("卢米埃影城(紫峰购物广场店)", "鼓楼区中山北路紫峰购物中心5-6F"), 34.0);
+        //taoppcinemaList.put(new Cinema("南京科技馆影城", "雨花台区紫荆花路9号（科技馆北门）"), 33.0);
+        // taoppcinemaList.put(new Cinema("时代影城", "高淳区富克斯5楼"), 36.0);
+        //taoppcinemaList.put(new Cinema("苏宁尊享影城 (新街口店)", "秦淮区淮海路68号苏宁生活广场2F"), 33.0);
+
+        // taoppcinemaList2.add(new NewCinema("CGV影城(百家湖店)", "江宁区双龙大道1698号景枫广场3F-4F", "40.0"));
+        // taoppcinemaList2.add(new NewCinema("卢米埃影城(紫峰购物广场店)", "鼓楼区中山北路紫峰购物中心5-6F", "34.0"));
+        // taoppcinemaList2.add(new NewCinema("南京科技馆影城", "雨花台区紫荆花路9号（科技馆北门）", "33.0"));
+        // taoppcinemaList2.add(new NewCinema("时代影城", "高淳区富克斯5楼", "36.0"));
+        // taoppcinemaList2.add(new NewCinema("苏宁尊享影城 (新街口店)", "秦淮区淮海路68号苏宁生活广场2F", "33.0"));
 
         Movie m = new Movie();
         m.setMovieid(movieId);
         m.setTitle(name);
-        m.setTaoppcinemaList(taoppcinemaList2);
+        m.setTaoppcinemaList(taoppcinemaListJUHE);  //可以改成taoppcinemaListJUHE   taoppcinemaList2
         m.setMaoyancinemaList(getMaoYanTicketByMovieId(movieId, showDate, size * (currentPage - 1) + ""));
         System.out.println("！！！！！！！！！！！！");
 
         System.out.println(m.toString());
+
+
+        //为了好看可以将NewCinema里增加 maoyanprice juheprice字段fake数据
+
+
         return new ResultVO(0, "", m);
 
     }
