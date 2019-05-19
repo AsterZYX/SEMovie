@@ -18,10 +18,10 @@ import semoviegroup.semovie.vo.ResultVO;
 @Service
 public class RankingListService {
 
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 		RankingListService rs = new RankingListService();
-		rs.getMovieBoxOfficeList(0, 0);
-	}
+		rs.getMaoyanRating(10, 2);
+	}*/
 
 	public ResultVO<List<Movie>> getMovieBoxOfficeList(@RequestParam("size") Integer size,
 													   @RequestParam("page") Integer currentPage) {
@@ -70,9 +70,9 @@ public class RankingListService {
 		List<Movie> movielist = new ArrayList<Movie>();
 
 		try {
-			//String loc = rc.getMaoyanRating(size, currentPage);
+			String loc = rc.getMaoyanRating(size, currentPage);
 			SAXReader reader = new SAXReader();
-			String loc="D:\\PycharmProjects\\SEmovie\\maoyanRating.xml";
+			//String loc="D:\\PycharmProjects\\SEmovie\\maoyanRating.xml";
 
 			File file = new File(loc);
 			Document document = reader.read(file);
@@ -103,7 +103,11 @@ public class RankingListService {
 				movielist.add(movie);
 
 			}
-			System.out.println(movielist.toString());
+			for(int i=0;i<movielist.size();i++) {
+				System.out.println(movielist.get(i).getTitle());
+				System.out.println(movielist.get(i).getMaoyanrating());
+			}
+			//System.out.println(movielist.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,6 +124,9 @@ public class RankingListService {
 		RankingListClient rc = new RankingListClient();
 		List<Movie> movielist = new ArrayList<Movie>();
 
+		
+		
+		
 		try {
 			//String loc = rc.getDoubanRating();
 			SAXReader reader = new SAXReader();
@@ -141,12 +148,21 @@ public class RankingListService {
 				movielist.add(movie);
 
 			}
-			System.out.println(movielist.toString());
+			//System.out.println(movielist.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ResultVO vo = new ResultVO(0, "", movielist);
+		
+		List<Movie> ml = new ArrayList<Movie>();
+		
+		for(int i=(currentPage-1)*size;i<(currentPage-1)*size+10;i++) {
+			ml.add(movielist.get(i));
+			System.out.println(movielist.get(i).getTitle());
+		}
+		
+		ResultVO vo = new ResultVO(0, "", ml);
+		
 		// System.out.println(vo);
 		return vo;
 	}
