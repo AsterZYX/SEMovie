@@ -26,7 +26,17 @@ def open_url(url):
 def parse_page(html):
     # html = requests.get("https://maoyan.com/films?showType=3&catId=3&sourceId=2&yearId=13&sortId=1&offset=30")
     soup = BeautifulSoup(html, 'lxml')
-
+    uul = soup.find(class_="list-pager")
+    global kkk
+    if uul is None:
+        kkk = 1
+    else:
+        aa = uul.find_all(name='a')
+        if aa[len(aa) - 1].get_text() == '下一页':
+            kkk = aa[len(aa) - 2].get_text()
+        else:
+            kkk = aa[len(aa) - 1].get_text()
+    print(kkk)
     items = soup.select('dd')
     for item in items:
         poster = item.find_all(name='img')[1].attrs['data-src']
@@ -115,7 +125,6 @@ while True:
     conn, addr = sock.accept()
     print("get client")
     print(addr)
-
     conn.settimeout(30)
     szBuf = conn.recv(1024)
     print("recv:" + str(szBuf, 'gbk'))
@@ -123,6 +132,7 @@ while True:
     print(base_url)
     html = open_url(base_url)
     result = parse_page(html)
+
     list = []
     for item in result:
         list.append(item)
@@ -134,7 +144,10 @@ while True:
     if "0" == szBuf:
         conn.send(b"exit")
     else:
-        conn.send(b"result saved at D:\PycharmProjects\SEmovie\AbstractSearchMovies.xml")
+        print("??????")
+        print(kkk)
+        info = "result saved at D:\PycharmProjects\SEmovie\AbstractSearchMovies.xml" + str(kkk)
+        conn.send(bytes(info, encoding="utf8"))
 
     conn.close()
     print("end of servive")
