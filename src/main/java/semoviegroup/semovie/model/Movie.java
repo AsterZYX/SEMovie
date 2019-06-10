@@ -9,37 +9,37 @@ import lombok.Data;
 
 @Data
 public class Movie {
-	String movieid;// 唯一标识ID
-	String state;// 正在上映 即将上映 经典影片
-	String maoyanrating;// 猫眼评分
-	String doubanrating;// 豆瓣评分
-	String wanting;// 想看人数
-	String sale;// 票房
-	String runtime;// 持续时间
-	String language;// 对白使用的语言
-	String title;// 名称
-	String poster;// 海报
-	String writers;// 编剧列表
-	String film_locations;// 拍摄地
-	String rating_count;// 评分人数
-	String plot_simple;// 剧情概要
-	String year;// 拍摄年代
-	String country;// 拍摄国家
-	String type;// 影片类型 （大多是null 不是很懂这个字段的意义是什么）
-	String release_date;// 上映时间
-	String also_known_as;// 其它名称
+	private String movieid;// 唯一标识ID
+	private String state;// 正在上映 即将上映 经典影片
+	private String maoyanrating;// 猫眼评分
+	private String doubanrating;// 豆瓣评分
+	private String wanting;// 想看人数
+	private String sale;// 票房
+	private String runtime;// 持续时间
+	private String language;// 对白使用的语言
+	private String title;// 名称
+	private String poster;// 海报
+	private String writers;// 编剧列表
+	private String film_locations;// 拍摄地
+	private String rating_count;// 评分人数
+	private String plot_simple;// 剧情概要
+	private String year;// 拍摄年代
+	private String country;// 拍摄国家
+	private String type;// 影片类型 （大多是null 不是很懂这个字段的意义是什么）
+	private String release_date;// 上映时间
+	private String also_known_as;// 其它名称
 
-	ArrayList<String> genres;// 分类 如：(动作/科幻/冒险)
-	ArrayList<Worker> directorList;// 导演列表
-	ArrayList<Worker> actorList;// 演员图像
-	ArrayList<String> picList;// 电影图集
+	private ArrayList<String> genres;// 分类 如：(动作/科幻/冒险)
+	private ArrayList<Worker> directorList;// 导演列表
+	private ArrayList<Worker> actorList;// 演员图像
+	private ArrayList<String> picList;// 电影图集
 
 	// SortedMap<Cinema, Double> maoyancinemaList;// 影院信息,价格
 	// SortedMap<Cinema, Double> doubancinemaList;// 影院信息,价格
 	// SortedMap<Cinema, Double> taoppcinemaList;// 影院信息,价格
 
-	ArrayList<NewCinema> maoyancinemaList;
-	ArrayList<NewCinema> taoppcinemaList;
+	private ArrayList<NewCinema> maoyancinemaList;
+	private ArrayList<NewCinema> taoppcinemaList;
 
 	public String getMovieid() {
 		return movieid;

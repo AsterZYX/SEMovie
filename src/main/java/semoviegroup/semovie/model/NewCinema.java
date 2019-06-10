@@ -1,9 +1,9 @@
 package semoviegroup.semovie.model;
 
 public class NewCinema {
-	String name;
-	String location;
-	String price;
+	private String name;
+	private String location;
+	private String price;
 
 	public NewCinema(String name, String location, String price) {
 		super();

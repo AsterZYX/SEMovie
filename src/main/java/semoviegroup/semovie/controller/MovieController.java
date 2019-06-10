@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import semoviegroup.semovie.model.Analysis;
 import semoviegroup.semovie.model.Movie;
 import semoviegroup.semovie.service.RankingListService;
 import semoviegroup.semovie.service.SearchService;
@@ -157,6 +158,17 @@ public class MovieController {
 			@RequestParam("page") Integer currentPage, @RequestParam("title") String movieName,
 			@RequestParam("id") String movieId, @RequestParam("showDate") String showDate) {
 		return searchService.getCinemaTicketsById(size, currentPage, movieName, movieId, showDate);
+	}
+
+	/**
+	 * 得到电影评价分析
+	 * @param id 电影ID（猫眼）
+	 * @param movieName 电影名称
+	 * @return 分析结果
+	 */
+	@GetMapping("/remark")
+	public ResultVO<Analysis> getRemarkAnalysis(@RequestParam("id") Integer id, @RequestParam("name") String movieName){
+		return null;
 	}
 
 }

@@ -34,10 +34,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import net.sf.json.JSONObject;
-import semoviegroup.semovie.model.Cinema;
-import semoviegroup.semovie.model.Movie;
-import semoviegroup.semovie.model.NewCinema;
-import semoviegroup.semovie.model.Worker;
+import semoviegroup.semovie.model.*;
 import semoviegroup.semovie.vo.ResultVO;
 
 @Service

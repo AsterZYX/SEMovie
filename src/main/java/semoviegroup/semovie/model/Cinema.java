@@ -4,8 +4,8 @@ import java.text.Collator;
 import java.util.Locale;
 
 public class Cinema implements Comparable {
-	String name;
-	String location;
+	private String name;
+	private String location;
 
 	public Cinema(String name, String location) {
 		super();

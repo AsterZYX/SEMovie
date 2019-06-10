@@ -1,10 +1,10 @@
 package semoviegroup.semovie.model;
 
 public class Worker {
-	String name;// 演职员名字
-	String identity;// 身份 如：actor director writer
-	String img; // url
-	String role; // 如果是演员就还有 这个字段 表明饰演什么角色
+	private String name;// 演职员名字
+	private String identity;// 身份 如：actor director writer
+	private String img; // url
+	private String role; // 如果是演员就还有 这个字段 表明饰演什么角色
 
 	public String getName() {
 		return name;
