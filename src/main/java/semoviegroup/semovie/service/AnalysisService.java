@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class AnalysisService {
 
+
     //tyf
     public String getSummaryAndKeywords(String moviename) {
         String s = "";
@@ -21,6 +22,33 @@ public class AnalysisService {
 
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("D:\\PycharmProjects\\SEmovie\\tyfResult.txt")));
+            s = bufferedReader.readLine();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+    //sqq's bad comments
+    public String getBadComments(String moviename) {
+        String s = "";
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("E:\\大三\\3\\应用集成原理与工具\\badComments.txt")));
+            s = bufferedReader.readLine();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+    //sqq's god comments
+    public String getGoodComments(String moviename) {
+        String s = "";
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("E:\\大三\\3\\应用集成原理与工具\\goodComments.txt")));
             s = bufferedReader.readLine();
 
 

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import semoviegroup.semovie.model.Analysis;
+import semoviegroup.semovie.model.AnalysisDetail;
 import semoviegroup.semovie.model.Movie;
 import semoviegroup.semovie.service.AnalysisService;
 import semoviegroup.semovie.service.RankingListService;
@@ -166,6 +167,30 @@ public class MovieController {
         }
         ana.setKeywords(llist);
         ana.setSummary(ss[10]);
+
+
+        AnalysisDetail badAD=new AnalysisDetail();
+        String badstr = analysisService.getBadComments(movieName);
+        String[] bads=badstr.split("****");
+        List<String> badList=new ArrayList<String>();
+        for (int i = 1; i < bads.size(); i++) {
+            badList.add(bads[i]);
+        }
+        badAD.setNum(Integer.parseInt(bads[0]));
+        badAD.setList(badList);
+
+        AnalysisDetail goodAD=new AnalysisDetail();
+        String goodstr = analysisService.getGoodComments(movieName);
+        String[] goods=goodstr.split("****");
+        List<String> goodList=new ArrayList<String>();
+        for (int i = 1; i < goods.size(); i++) {
+            goodList.add(goods[i]);
+        }
+        goodAD.setNum(Integer.parseInt(goods[0]));
+        goodAD.setList(goodList);
+
+        ana.setPositive(goodAD);
+        ana.setNegative(badAD);
 
         ResultVO<Analysis> vo = new ResultVO<Analysis>(0, "", ana);
         return vo;
