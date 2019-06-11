@@ -169,21 +169,21 @@ public class MovieController {
         ana.setSummary(ss[10]);
 
 
-        AnalysisDetail badAD=new AnalysisDetail();
+        AnalysisDetail badAD = new AnalysisDetail();
         String badstr = analysisService.getBadComments(movieName);
-        String[] bads=badstr.split("****");
-        List<String> badList=new ArrayList<String>();
-        for (int i = 1; i < bads.size(); i++) {
+        String[] bads = badstr.split("%%%%");
+        List<String> badList = new ArrayList<String>();
+        for (int i = 1; i < bads.length; i++) {
             badList.add(bads[i]);
         }
         badAD.setNum(Integer.parseInt(bads[0]));
         badAD.setList(badList);
 
-        AnalysisDetail goodAD=new AnalysisDetail();
+        AnalysisDetail goodAD = new AnalysisDetail();
         String goodstr = analysisService.getGoodComments(movieName);
-        String[] goods=goodstr.split("****");
-        List<String> goodList=new ArrayList<String>();
-        for (int i = 1; i < goods.size(); i++) {
+        String[] goods = goodstr.split("%%%%");
+        List<String> goodList = new ArrayList<String>();
+        for (int i = 1; i < goods.length; i++) {
             goodList.add(goods[i]);
         }
         goodAD.setNum(Integer.parseInt(goods[0]));
