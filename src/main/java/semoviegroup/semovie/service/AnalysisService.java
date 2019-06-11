@@ -34,28 +34,39 @@ public class AnalysisService {
     //sqq's bad comments
     public String getBadComments(String moviename) {
         String s = "";
+        String r="";
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("E:\\大三\\3\\应用集成原理与工具\\badComments.txt")));
-            s = bufferedReader.readLine();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("D:\\PycharmProjects\\SEmovie\\badComments.txt")));
+
+            while((s=bufferedReader.readLine())!=null){
+                r=r+s;
+            }
+            //s = bufferedReader.readLine();
+            System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"+r);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return s;
+        return r;
     }
 
     //sqq's god comments
     public String getGoodComments(String moviename) {
         String s = "";
+        String r="";
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("E:\\大三\\3\\应用集成原理与工具\\goodComments.txt")));
-            s = bufferedReader.readLine();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("D:\\PycharmProjects\\SEmovie\\goodComments.txt")));
 
+            while((s=bufferedReader.readLine())!=null){
+                r=r+s;
+            }
+            //s = bufferedReader.readLine();
+            System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"+r);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return s;
+        return r;
     }
 
 }

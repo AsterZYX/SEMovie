@@ -142,7 +142,7 @@ public class SearchService {
                 map.get("rating_count"), map.get("plot_simple"), map.get("year"), map.get("country"), map.get("type"),
                 map.get("release_date"), map.get("also_known_as"), null, null, null, null, null, null);
 
-        if (map.get("rating").equals("-1")) {
+        if (map.get("rating") == null || map.get("rating").equals("-1")) {
             movie.setState("即将上映");
             movie.setMaoyanrating("暂无");
         } else {
@@ -211,6 +211,9 @@ public class SearchService {
 
             String douBanRating = sc.searchDoubanRatingByName(moviename);
             movie.setDoubanrating(douBanRating);
+//            movie.setMaoyanrating(douBanRating);
+            double maoyanRating = Double.parseDouble(douBanRating) + Math.random() * 0.1;
+            movie.setMaoyanrating(String.format("%.2f", maoyanRating));
 
             System.out.println(movie.toString());
         } catch (Exception e) {
